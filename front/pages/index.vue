@@ -14,7 +14,7 @@
         <h2>Les dernières sorties</h2>
         <swiper :id="$style.mangas__list" ref="mangas__list" :options="swiperOptions">
           <swiper-slide>
-            <Manga title="Nouveau manga" description="Un super manga par Togashi" image="https://picsum.photos/200/300" />
+            <Manga title="Hunter x Hunter" description="Yoshihiro Togashi — En cours — 390 chapitres" image="https://pbs.twimg.com/media/DUXsxpnWsAAjjKH.jpg" />
           </swiper-slide>
           <div slot="scrollbar" class="swiper-scrollbar" />
         </swiper>
@@ -90,7 +90,8 @@ export default {
     flex-direction: column;
     justify-content: flex-end;
     height: calc(100vh - 200px);
-    padding-bottom: 20vh;
+    min-height: 400px;
+    padding-bottom: 200px;
     background-image: url(../assets/home/header.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -107,10 +108,6 @@ export default {
 
     :global(.container-fluid) { z-index: 1; }
 
-    h1 {
-
-    }
-
     p {
       max-width: 500px;
       font-weight: 300;
@@ -119,9 +116,12 @@ export default {
   }
 
   #mangas {
-    margin-top: $spacer;
+    margin: $spacer 0;
 
-    h2 { font-size: $font-size-lg; }
+    h2 {
+      margin-bottom: $spacer;
+      font-size: $font-size-lg;
+    }
   }
 }
 </style>
