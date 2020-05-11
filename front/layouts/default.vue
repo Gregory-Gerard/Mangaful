@@ -1,55 +1,52 @@
 <template>
   <div>
-    <nuxt />
+    <nav class="navbar navbar-expand navbar-dark fixed-top">
+      <b-container fluid="fluid">
+        <strong class="navbar-brand">Mangaful</strong>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <b-button href="#" size="sm" variant="primary">
+              <user-icon />
+              Se connecter
+            </b-button>
+          </li>
+        </ul>
+      </b-container>
+    </nav>
+
+    <main>
+      <nuxt />
+    </main>
   </div>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+import { UserIcon } from 'vue-feather-icons'
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+export default {
+  components: {
+    UserIcon
+  }
 }
+</script>
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+  $body-bg: #212529; // $gray-900
+  $body-color: #fff; // $gray-900
+  $primary: #544DFF;
+  $font-family-sans-serif: 'Rubik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+  @import '~bootstrap/scss/bootstrap.scss';
+  @import '~bootstrap-vue/src/index.scss';
+  @import 'assets/variables';
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+  .navbar {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 </style>

@@ -5,15 +5,19 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Chargement...',
+    titleTemplate: '%s — Mangaful',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: "Lisez vos mangas préférés gratuitement, sans aucune publicité et d'autres avantages comme les notifications de sorties, mise à jour automatique de MAL et AniList et plus encore..." }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    htmlAttrs: {
+      lang: 'fr',
+    }
   },
   /*
   ** Customize the progress-bar color
@@ -61,5 +65,13 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+
+  /*
+  ** BootstrapVue Configuration
+  */
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false
   }
 }

@@ -1,77 +1,127 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        front
-      </h1>
-      <h2 class="subtitle">
-        {{ test }}
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div :id="$style.home">
+    <header :id="$style.header">
+      <b-container fluid="fluid">
+        <h1>Mangaful</h1>
+        <p>Lisez vos mangas préférés gratuitement, sans aucune publicité et d'autres avantages comme les notifications de sorties,
+          mise à jour automatique de MAL et AniList et bien plus encore !</p>
+        <b-button href="#" variant="primary">S'inscrire</b-button>
+      </b-container>
+    </header>
+
+    <section :id="$style.mangas">
+      <b-container fluid="fluid">
+        <h2>Les dernières sorties</h2>
+        <swiper :id="$style.mangas__list" ref="mangas__list" :options="swiperOptions">
+          <swiper-slide>
+            <Manga title="Nouveau manga" description="Un super manga par Togashi" image="https://picsum.photos/200/300" />
+          </swiper-slide>
+          <div slot="scrollbar" class="swiper-scrollbar" />
+        </swiper>
+      </b-container>
+    </section>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+// Import swiper
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+
+// Custom components
+import Manga from '../components/Manga.vue'
 
 export default {
   components: {
-    Logo
+    Manga,
+    Swiper,
+    SwiperSlide
   },
   data () {
     return {
-      test: 'Interface web pour lire des mangas avec une API Laravel'
+      swiperOptions: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        breakpoints: {
+          320: {
+            slidesPerView: 2
+          },
+          576: {
+            slidesPerView: 3
+          },
+          768: {
+            slidesPerView: 4
+          },
+          992: {
+            slidesPerView: 5
+          },
+          1200: {
+            slidesPerView: 6
+          },
+          1600: {
+            slidesPerView: 8
+          }
+        },
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          hide: true
+        }
+      }
+    }
+  },
+  head () {
+    return {
+      title: 'Accueil'
     }
   }
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss">
+@import '~swiper/swiper';
+</style>
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+<style module lang="scss">
+@import 'assets/variables';
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+#home {
+  #header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: calc(100vh - 200px);
+    padding-bottom: 20vh;
+    background-image: url(../assets/home/header.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
 
-.links {
-  padding-top: 15px;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(0deg, rgba($gray-900, 1) 5%, rgba(#000,0) 100%);
+    }
+
+    :global(.container-fluid) { z-index: 1; }
+
+    h1 {
+
+    }
+
+    p {
+      max-width: 500px;
+      font-weight: 300;
+      color: rgba(#fff, .8);
+    }
+  }
+
+  #mangas {
+    margin-top: $spacer;
+
+    h2 { font-size: $font-size-lg; }
+  }
 }
 </style>
