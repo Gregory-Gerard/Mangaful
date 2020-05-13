@@ -13,8 +13,8 @@
       <b-container fluid="fluid">
         <h2>Les dernières sorties</h2>
         <swiper :id="$style.mangas__list" ref="mangas__list" :options="swiperOptions">
-          <swiper-slide>
-            <Manga title="Hunter x Hunter" description="Yoshihiro Togashi — En cours — 390 chapitres" image="https://pbs.twimg.com/media/DUXsxpnWsAAjjKH.jpg" />
+          <swiper-slide v-for="i in 10" :key="i">
+            <Manga :title="`Hunter x Hunter ${i}`" description="Yoshihiro Togashi — En cours — 390 chapitres" :image="`https://picsum.photos/seed/${i}/500/300`" />
           </swiper-slide>
           <div slot="scrollbar" class="swiper-scrollbar" />
         </swiper>
@@ -65,7 +65,8 @@ export default {
           el: '.swiper-scrollbar',
           hide: true
         }
-      }
+      },
+      lastMangas: []
     }
   },
   head () {
@@ -78,6 +79,16 @@ export default {
 
 <style lang="scss">
 @import '~swiper/swiper';
+@import '~swiper/components/scrollbar/scrollbar';
+
+.swiper-container {
+  padding-bottom: 1rem;
+}
+
+.swiper-scrollbar {
+  left: 0 !important;
+  width: 100% !important;
+}
 </style>
 
 <style module lang="scss">
@@ -90,7 +101,7 @@ export default {
     flex-direction: column;
     justify-content: flex-end;
     height: calc(100vh - 200px);
-    min-height: 400px;
+    min-height: 500px;
     padding-bottom: 200px;
     background-image: url(../assets/home/header.jpg);
     background-size: cover;
@@ -116,7 +127,7 @@ export default {
   }
 
   #mangas {
-    margin: $spacer 0;
+    margin: 0 0 $spacer;
 
     h2 {
       margin-bottom: $spacer;

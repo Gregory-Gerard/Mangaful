@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('mangas', 'MangaController')->except(['store', 'update', 'destroy']);
+Route::apiResource('mangas.chapters', 'ChapterController')->shallow()->except(['store', 'update', 'destroy']);

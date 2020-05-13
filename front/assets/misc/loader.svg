@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block;" width="70px" height="70px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+  <g transform="translate(50,50)">
+    <g transform="scale(0.84)">
+      <circle cx="0" cy="0" r="50" fill="#ced4da"></circle>
+      <circle cx="0" cy="-27" r="15" fill="#544dff" transform="rotate(315.517)">
+        <animateTransform attributeName="transform" type="rotate" dur="1.1627906976744184s" repeatCount="indefinite" keyTimes="0;1" values="0 0 0;360 0 0"></animateTransform>
+      </circle>
+    </g>
+  </g>
+</svg>

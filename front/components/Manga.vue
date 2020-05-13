@@ -1,10 +1,11 @@
 <template>
-  <div :class="$style.manga" :style="`background-image:url(${image})`">
+  <div v-if="placeholder === false" v-lazy:background-image="image" :class="$style.manga">
     <div :class="$style.manga__informations">
       <strong :class="$style.manga__informations__title">{{ title }}</strong>
       <p :class="$style.manga__informations__description">{{ description }}</p>
     </div>
   </div>
+  <div v-else :class="$style.manga" />
 </template>
 
 <script>
@@ -22,6 +23,10 @@ export default {
     image: {
       type: String,
       default: ''
+    },
+    placeholder: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -34,10 +39,15 @@ export default {
     position: relative;
     border-radius: $border-radius;
     padding-bottom: (5/3.33) * 100%;
+    background-color: $gray-300;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
+
+    &[lazy=loading] {
+      background-size: 25px;
+    }
 
     &:hover {
       .manga__informations, &::after {
