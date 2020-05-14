@@ -37,7 +37,7 @@ class MangaController extends Controller
      */
     public function show(Manga $manga)
     {
-        return new MangaResource($manga);
+        return new MangaResource($manga->loadMissing(['chapters', 'authors']));
     }
 
     /**
