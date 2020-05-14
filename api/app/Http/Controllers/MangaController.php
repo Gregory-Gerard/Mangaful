@@ -15,7 +15,7 @@ class MangaController extends Controller
      */
     public function index()
     {
-        return MangaResource::collection(Manga::with('author')->get());
+        return MangaResource::collection(Manga::with('authors')->get());
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Author;
+use \App\Http\Resources\Author as AuthorResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Manga extends JsonResource
@@ -18,16 +18,13 @@ class Manga extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'author' => [
-                'id' => $this->author->id,
-                'fullname' => $this->author->fullname
-            ],
-            'cover' => is_null($this->cover) ? null : asset("/storage/{$this->cover}"),
-            'banner' => is_null($this->banner) ? null : asset("/storage/{$this->banner}"),
-            'description' => $this->description,
-            'status' => $this->status,
+            'authors' => $this->when($this->authors !== null, AuthorResource::collection($this->authors)),
+            'cover' => $this->when($this->cover !== null, asset("/storage/{$this->cover}")),
+            'banner' => $this->when($this->banner !== null, asset("/storage/{$this->banner}")),
+            'description' => $this->when($this->description !== null, $this->description),
+            'status' => $this->when($this->status !== null, $this->status),
             'is_webcomic' => $this->is_webcomic,
-            'release' => $this->release->format('Y-m-d')
+            'release' => $this->when($this->release !== null, $this->release->format('Y-m-d'))
         ];
     }
 }

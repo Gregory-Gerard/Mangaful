@@ -14,12 +14,21 @@ class Author extends Model
     protected $table = 'authors';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'fullname'
+    ];
+
+    /**
      * Manga relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function mangas()
     {
-        return $this->hasMany('App\Manga');
+        return $this->belongsToMany('App\Manga', 'mangas_authors');
     }
 }

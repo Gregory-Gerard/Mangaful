@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNumberToChaptersTable extends Migration
+class RemoveAuthorFromMangasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddNumberToChaptersTable extends Migration
      */
     public function up()
     {
-        Schema::table('chapters', function (Blueprint $table) {
-            $table->string('number', 5)->after('manga_id');
+        Schema::table('mangas', function (Blueprint $table) {
+            $table->dropColumn('author_id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddNumberToChaptersTable extends Migration
      */
     public function down()
     {
-        Schema::table('chapters', function (Blueprint $table) {
-            $table->dropColumn('number');
+        Schema::table('mangas', function (Blueprint $table) {
+            $table->bigInteger('author_id')->after('title')->index()->nullable();
         });
     }
 }

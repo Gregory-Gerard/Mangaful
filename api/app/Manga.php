@@ -25,11 +25,11 @@ class Manga extends Model
     /**
      * Author relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function author()
+    public function authors()
     {
-        return $this->belongsTo('App\Author');
+        return $this->belongsToMany('App\Author', 'mangas_authors');
     }
 
     /**
