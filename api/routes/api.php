@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('mangas', 'MangaController')->except(['store', 'update', 'destroy']);
+
+Route::get('/chapters/last', 'ChapterController@lastReleases')->name('chapters.last-releases');
 Route::apiResource('mangas.chapters', 'ChapterController')->shallow()->except(['store', 'update', 'destroy']);

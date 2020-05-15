@@ -21,6 +21,16 @@ class ChapterController extends Controller
     }
 
     /**
+     * Affiche les derniers chapitres sortis
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function lastReleases()
+    {
+        return ChapterResource::collection(Chapter::with(['manga', 'manga.authors'])->orderBy('created_at', 'desc')->limit(15)->get());
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

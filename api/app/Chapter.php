@@ -14,6 +14,16 @@ class Chapter extends Model
     protected $table = 'chapters';
 
     /**
+     * Manga relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manga()
+    {
+        return $this->belongsTo('App\Manga');
+    }
+
+    /**
      * Pages relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
