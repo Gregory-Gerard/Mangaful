@@ -23,10 +23,12 @@ class Manga extends JsonResource
             'cover' => $this->when($this->cover !== null, asset("/storage/{$this->cover}")),
             'banner' => $this->when($this->banner !== null, asset("/storage/{$this->banner}")),
             'description' => $this->when($this->description !== null, $this->description),
-            'status' => $this->when($this->status !== null, $this->status),
+            'status' => $this->when($this->status !== null, __($this->status)),
             'is_webcomic' => $this->is_webcomic,
             'release' => $this->when($this->release !== null, $this->release->format('Y-m-d')),
-            'chapters' => ChapterResource::collection($this->whenLoaded('chapters'))
+
+            'chapters' => ChapterResource::collection($this->whenLoaded('chapters')),
+            'chapters_count' => $this->when($this->chapters_count !== null, $this->chapters_count)
         ];
     }
 }

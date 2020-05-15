@@ -27,7 +27,15 @@ class ChapterController extends Controller
      */
     public function lastReleases()
     {
-        return ChapterResource::collection(Chapter::with(['manga', 'manga.authors'])->orderBy('created_at', 'desc')->limit(15)->get());
+        return ChapterResource::collection(
+            Chapter::with(['manga' => function ($query) {
+                    $query->with('authors');
+                    $query->withCount('chapters');
+                }])
+                ->orderBy('created_at', 'desc')
+                ->limit(15)
+                ->get()
+        );
     }
 
     /**
