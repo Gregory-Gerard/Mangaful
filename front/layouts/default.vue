@@ -36,7 +36,7 @@ export default {
 
   $body-bg: #212529; // $gray-900
   $body-color: #fff; // $gray-900
-  $primary: #544DFF;
+  $primary: #794bc4;
   $font-family-sans-serif: 'Rubik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
   @import '~bootstrap/scss/bootstrap.scss';

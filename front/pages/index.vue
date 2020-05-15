@@ -13,8 +13,8 @@
       <b-container fluid="fluid">
         <h2>Les dernières sorties</h2>
         <swiper :id="$style.mangas__list" ref="mangas__list" :options="swiperOptions">
-          <swiper-slide v-for="i in 10" :key="i">
-            <Manga :title="`Hunter x Hunter ${i}`" description="Yoshihiro Togashi — En cours — 390 chapitres" :image="`https://picsum.photos/seed/${i}/500/300`" />
+          <swiper-slide v-for="chapter in lastChapters" :key="chapter.id">
+            <Manga :title="chapter.manga.title" :description="`${chapter.manga.authors && chapter.manga.authors.map(author => author.fullname).join(', ')} — En cours — 390 chapitres`" :image="chapter.manga.cover" />
           </swiper-slide>
           <div slot="scrollbar" class="swiper-scrollbar" />
         </swiper>
@@ -28,6 +28,7 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 // Custom components
+import axios from 'axios'
 import Manga from '../components/Manga.vue'
 
 export default {
@@ -35,6 +36,10 @@ export default {
     Manga,
     Swiper,
     SwiperSlide
+  },
+  async asyncData () {
+    const { data } = await axios.get('http://localhost/perso/mangaful/api/public/api/chapters/last')
+    return { lastChapters: data.data }
   },
   data () {
     return {
@@ -66,7 +71,7 @@ export default {
           hide: true
         }
       },
-      lastMangas: []
+      lastChapters: []
     }
   },
   head () {
@@ -82,7 +87,13 @@ export default {
 @import '~swiper/components/scrollbar/scrollbar';
 
 .swiper-container {
+  opacity: 0;
+  transition: opacity.2s;
   padding-bottom: 1rem;
+
+  &-initialized {
+    opacity: 1;
+  }
 }
 
 .swiper-scrollbar {

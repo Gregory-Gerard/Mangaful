@@ -35,18 +35,43 @@ export default {
 <style module lang="scss">
   @import 'assets/variables';
 
+  @keyframes loading {
+    0% {
+      transform: translateX(-100%)
+    }
+
+    to {
+      transform: translateX(50%)
+    }
+  }
+
   .manga {
     position: relative;
     border-radius: $border-radius;
     padding-bottom: (5/3.33) * 100%;
-    background-color: $gray-300;
+    background-color: $gray-800;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
 
     &[lazy=loading] {
-      background-size: 25px;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        animation: loading 2s linear infinite;
+        transform: translateX(0);
+        height: 100%;
+        width: 200%;
+        background: linear-gradient(90deg,rgba($gray-400,0) 0,rgba($gray-400,.06) 40%,rgba($gray-400,.06) 60%,rgba($gray-400,0));
+      }
+    }
+
+    &[lazy=error] {
+      background-color: rgba($primary,.2);
     }
 
     &:hover {
