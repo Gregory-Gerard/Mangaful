@@ -14,7 +14,7 @@
         <h2>Les dernières sorties</h2>
         <swiper :id="$style.mangas__list" ref="mangas__list" :options="swiperOptions">
           <swiper-slide v-for="chapter in lastChapters" :key="chapter.id">
-            <Manga :title="chapter.manga.title" :description="`${chapter.manga.authors && chapter.manga.authors.map(author => author.fullname).join(', ')} — En cours — 390 chapitres`" :image="chapter.manga.cover" />
+            <Manga :title="chapter.manga.title" :description="`${chapter.manga.authors && chapter.manga.authors.map(author => author.fullname).join(', ')} — ${chapter.manga.status || 'Inconnu'} — ${chapter.manga.chapters_count} chapitres`" :image="chapter.manga.cover" />
           </swiper-slide>
           <div slot="scrollbar" class="swiper-scrollbar" />
         </swiper>

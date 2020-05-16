@@ -35,6 +35,7 @@ class CheckUpdateScantrad implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     * @throws \Exception
      */
     public function handle()
     {
@@ -54,6 +55,8 @@ class CheckUpdateScantrad implements ShouldQueue
                 'number' => $chapter_number[1]
             ];
         });
+
+        if (count($available_chapter_on_source) === 0) throw new \Exception("0 chapter available. Maybe Scantrad updated their code ?");
 
         $chapters_to_download = array_diff_key($available_chapter_on_source, array_flip($chapter_list_already_downloaded->toArray()));
 
