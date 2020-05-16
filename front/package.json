@@ -21,6 +21,7 @@
     "moment": "^2.25.3",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2",
+    "slug": "^2.1.1",
     "swiper": "^5.3.8",
     "vue-awesome-swiper": "^4.1.1",
     "vue-feather-icons": "^5.0.0",
