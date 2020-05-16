@@ -2,8 +2,8 @@
   <div v-if="placeholder === false" v-lazy:background-image="image" :class="$style.manga">
     <div :class="$style.manga__informations">
       <strong :class="$style.manga__informations__title">{{ title }}</strong>
-      <p :class="$style.manga__informations__description">{{ description }}</p>
-      <time v-if="typeof chapter !== 'undefined'" :class="$style.manga__informations__time" datetime="chapter.created_at">{{ chapter_created_at }}</time>
+      <p :class="$style.manga__informations__description">{{ mangaAuthors }} — {{ status }}</p>
+      <time v-if="typeof chapter !== 'undefined'" :class="$style.manga__informations__time" datetime="chapter.created_at">{{ chapterCreatedAtLocale }}</time>
     </div>
   </div>
   <div v-else :class="$style.manga" />
@@ -19,9 +19,13 @@ export default {
       type: String,
       default: 'Aucun titre'
     },
-    description: {
+    authors: {
+      type: Array,
+      default: () => ['Inconnu']
+    },
+    status: {
       type: String,
-      default: 'Aucune description'
+      default: 'Inconnu'
     },
     image: {
       type: String,
@@ -37,8 +41,11 @@ export default {
     }
   },
   computed: {
-    chapter_created_at () {
-      return moment(this.chapter.created_at).format('DD/MM/YYYY HH:mm:ss')
+    mangaAuthors () {
+      return this.authors.map(author => author.fullname || 'Inconnu').join(', ')
+    },
+    chapterCreatedAtLocale () {
+      return typeof this.chapter !== 'undefined' ? moment(this.chapter.created_at).format('DD/MM/YYYY HH:mm') : undefined
     }
   }
 }

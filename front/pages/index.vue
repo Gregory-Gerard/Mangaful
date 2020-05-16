@@ -16,7 +16,8 @@
           <swiper-slide v-for="chapter in lastChapters" :key="chapter.id">
             <Manga
               :title="chapter.manga.title"
-              :description="`${chapter.manga.authors && chapter.manga.authors.map(author => author.fullname).join(', ')} — ${chapter.manga.status || 'Inconnu'}`"
+              :authors="chapter.manga.authors"
+              :status="chapter.manga.status"
               :image="chapter.manga.cover"
               :chapter="chapter"
             />
