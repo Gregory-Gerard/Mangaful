@@ -28,7 +28,6 @@ class Manga extends JsonResource
             'release' => $this->when($this->release !== null, $this->release->format('Y-m-d')),
 
             'chapters' => ChapterResource::collection($this->whenLoaded('chapters')),
-            'chapters_count' => $this->when($this->chapters_count !== null, $this->chapters_count)
         ];
     }
 }
