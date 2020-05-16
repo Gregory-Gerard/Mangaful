@@ -34,7 +34,6 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 // Custom components
-import axios from 'axios'
 import { LAST_CHAPTERS } from '../constants/api'
 import Manga from '../components/Manga.vue'
 
@@ -44,8 +43,8 @@ export default {
     Swiper,
     SwiperSlide
   },
-  async asyncData () {
-    const { data } = await axios.get(LAST_CHAPTERS())
+  async asyncData ({ $axios }) {
+    const { data } = await $axios.get(LAST_CHAPTERS())
     return { lastChapters: data.data }
   },
   data () {
