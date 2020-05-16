@@ -1,13 +1,15 @@
 <template>
-  <div v-if="placeholder === false" v-lazy:background-image="image" :class="$style.manga">
-    <span v-if="typeof chapter !== 'undefined'" class="badge badge-primary badge-pill" :class="$style.manga__number">#{{ chapter.number }}</span>
-    <div :class="$style.manga__informations">
-      <strong :class="$style.manga__informations__title">{{ title }}</strong>
-      <p :class="$style.manga__informations__description">{{ mangaAuthors }} — {{ status }}</p>
-      <time v-if="typeof chapter !== 'undefined'" :class="$style.manga__informations__time" datetime="chapter.created_at">{{ chapterCreatedAtLocale }}</time>
+  <nuxt-link to="/" :class="$style.manga__wrapper">
+    <div v-if="placeholder === false" v-lazy:background-image="image" :class="$style.manga">
+      <span v-if="typeof chapter !== 'undefined'" class="badge badge-primary badge-pill" :class="$style.manga__number">#{{ chapter.number }}</span>
+      <div :class="$style.manga__informations">
+        <strong :class="$style.manga__informations__title">{{ title }}</strong>
+        <p :class="$style.manga__informations__description">{{ mangaAuthors }} — {{ status }}</p>
+        <time v-if="typeof chapter !== 'undefined'" :class="$style.manga__informations__time" datetime="chapter.created_at">{{ chapterCreatedAtLocale }}</time>
+      </div>
     </div>
-  </div>
-  <div v-else :class="$style.manga" />
+    <div v-else :class="$style.manga" />
+  </nuxt-link>
 </template>
 
 <script>
@@ -61,6 +63,12 @@ export default {
     to {
       transform: translateX(50%)
     }
+  }
+
+  .manga__wrapper {
+    display: block;
+    color: $white !important;
+    text-underline: none;
   }
 
   .manga {
