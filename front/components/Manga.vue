@@ -3,12 +3,15 @@
     <div :class="$style.manga__informations">
       <strong :class="$style.manga__informations__title">{{ title }}</strong>
       <p :class="$style.manga__informations__description">{{ description }}</p>
+      <time v-if="typeof chapter !== 'undefined'" :class="$style.manga__informations__time" datetime="chapter.created_at">{{ chapter_created_at }}</time>
     </div>
   </div>
   <div v-else :class="$style.manga" />
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'Manga',
   props: {
@@ -24,9 +27,18 @@ export default {
       type: String,
       default: ''
     },
+    chapter: {
+      type: Object,
+      default: undefined
+    },
     placeholder: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    chapter_created_at () {
+      return moment(this.chapter.created_at).format('DD/MM/YYYY HH:mm:ss')
     }
   }
 }
@@ -70,10 +82,6 @@ export default {
       }
     }
 
-    &[lazy=error] {
-      background-color: rgba($primary,.2);
-    }
-
     &:hover {
       .manga__informations, &::after {
         opacity: 1;
@@ -102,7 +110,7 @@ export default {
       padding: $spacer;
       pointer-events: none;
 
-      &__description {
+      &__description, &__time {
         margin-bottom: unset;
         font-size: $font-size-sm / 1.1;
         color: $gray-100;
