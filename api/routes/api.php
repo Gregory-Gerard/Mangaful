@@ -18,3 +18,5 @@ Route::apiResource('mangas', 'MangaController')->except(['store', 'update', 'des
 
 Route::get('/chapters/last', 'ChapterController@lastReleases')->name('chapters.last-releases');
 Route::apiResource('mangas.chapters', 'ChapterController')->shallow()->except(['store', 'update', 'destroy']);
+
+Route::apiResource('chapters.pages', 'PageController')->shallow()->except(['show', 'store', 'update', 'destroy']);

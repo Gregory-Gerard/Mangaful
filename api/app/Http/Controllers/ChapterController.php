@@ -17,7 +17,7 @@ class ChapterController extends Controller
      */
     public function index(Manga $manga)
     {
-        return ChapterResource::collection($manga->chapters);
+        return ChapterResource::collection($manga->chapters()->orderBy('index'));
     }
 
     /**
