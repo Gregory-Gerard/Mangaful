@@ -1,5 +1,6 @@
 <template>
   <div v-if="placeholder === false" v-lazy:background-image="image" :class="$style.manga">
+    <span v-if="typeof chapter !== 'undefined'" class="badge badge-primary badge-pill" :class="$style.manga__number">#{{ chapter.number }}</span>
     <div :class="$style.manga__informations">
       <strong :class="$style.manga__informations__title">{{ title }}</strong>
       <p :class="$style.manga__informations__description">{{ mangaAuthors }} — {{ status }}</p>
@@ -106,6 +107,11 @@ export default {
       width: 100%;
       background: linear-gradient(0deg, rgba($gray-900, .9) 0%, rgba(#000,0) 100%);
       pointer-events: none;
+    }
+
+    &__number {
+      position: absolute;
+      top: $spacer / 2; left: $spacer / 2;
     }
 
     &__informations {
