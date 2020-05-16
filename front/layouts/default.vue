@@ -35,7 +35,7 @@ export default {
   @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
 
   $body-bg: #212529; // $gray-900
-  $body-color: #fff; // $gray-900
+  $body-color: #fff;
   $primary: #794bc4;
   $font-family-sans-serif: 'Rubik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
