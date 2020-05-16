@@ -109,8 +109,6 @@ export default {
 </style>
 
 <style module lang="scss">
-@import 'assets/variables';
-
 #home {
   #header {
     position: relative;

@@ -13,7 +13,8 @@ export default {
       { hid: 'description', name: 'description', content: "Lisez vos mangas préférés gratuitement, sans aucune publicité et d'autres avantages comme les notifications de sorties, mise à jour automatique de MAL et AniList et plus encore..." }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap' }
     ],
     htmlAttrs: {
       lang: 'fr',
@@ -39,7 +40,8 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources'
   ],
   /*
   ** Nuxt.js modules
@@ -66,6 +68,10 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+
+  styleResources: {
+    scss: ['./assets/_variables.scss']
   },
 
   /*

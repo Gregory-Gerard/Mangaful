@@ -53,8 +53,6 @@ export default {
 </script>
 
 <style module lang="scss">
-  @import 'assets/variables';
-
   @keyframes loading {
     0% {
       transform: translateX(-100%)
