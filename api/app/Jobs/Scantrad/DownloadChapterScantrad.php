@@ -94,6 +94,9 @@ class DownloadChapterScantrad implements ShouldQueue
      */
     public function failed(\Exception $exception)
     {
+        // if we can't download pages for any reason,
+        // we delete the chapter so the job can try later and
+        // chapter will not be empty
         $this->chapter->delete();
     }
 }
