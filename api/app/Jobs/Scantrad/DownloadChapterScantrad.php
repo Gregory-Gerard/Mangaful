@@ -21,6 +21,13 @@ class DownloadChapterScantrad implements ShouldQueue
     protected $url;
 
     /**
+     * Delete the job if its models no longer exist.
+     *
+     * @var bool
+     */
+    public $deleteWhenMissingModels = true;
+
+    /**
      * Create a new job instance.
      *
      * @return void
@@ -35,6 +42,8 @@ class DownloadChapterScantrad implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     *
+     * @throws \Exception
      */
     public function handle()
     {
@@ -74,5 +83,17 @@ class DownloadChapterScantrad implements ShouldQueue
         } else {
             throw new \Exception("ZIP from Scantrad corrupted");
         }
+    }
+
+    /**
+     * The job failed to process.
+     *
+     * @param \Exception $exception
+     *
+     * @return void
+     */
+    public function failed(\Exception $exception)
+    {
+        $this->chapter->delete();
     }
 }
