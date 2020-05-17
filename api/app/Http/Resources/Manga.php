@@ -27,6 +27,9 @@ class Manga extends JsonResource
             'is_webcomic' => $this->is_webcomic,
             'release' => $this->when($this->release !== null, $this->release->format('Y-m-d')),
 
+            'source_url' => $this->scrapping_url,
+            'source' => parse_url($this->scrapping_url, PHP_URL_HOST),
+
             'chapters' => ChapterResource::collection($this->whenLoaded('chapters')),
         ];
     }
