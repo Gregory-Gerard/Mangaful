@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand navbar-dark">
       <b-container fluid="fluid">
-        <strong class="navbar-brand">Mangaful</strong>
+        <nuxt-link to="/"><strong class="navbar-brand">Mangaful</strong></nuxt-link>
 
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -44,6 +44,31 @@ export default {
     .container {
       padding-left: 15px;
       padding-right: 15px;
+    }
+  }
+
+  @keyframes loading {
+    0% {
+      transform: translateX(-100%)
+    }
+
+    to {
+      transform: translateX(50%)
+    }
+  }
+
+  [lazy=loading] {
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      animation: loading 2s linear infinite;
+      transform: translateX(0);
+      height: 100%;
+      width: 200%;
+      background: linear-gradient(90deg, rgba($gray-300, 0) 0, rgba($gray-300, .06) 30%, rgba($gray-300, .06) 60%, rgba($gray-300, 0));
     }
   }
 </style>
